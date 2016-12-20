@@ -23,6 +23,8 @@ public class IngestTemperatures extends TimerTask {
 
             System.out.println(ny_message);
             System.out.println(zh_message);
+            KafkaConnector.sendMessage("temperatureReport", ny_message);
+            KafkaConnector.sendMessage("temperatureReport", zh_message);
         } catch(IOException e) {
             System.err.println(e);
         }

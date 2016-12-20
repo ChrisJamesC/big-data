@@ -9,3 +9,4 @@ Resources
 ---------
 - [Kafka documentation] (http://kafka.apache.org/documentation/)
 - [Open Weather Map client] (https://bitbucket.org/akapribot/owm-japis/src)
+- [JSON serializer] (http://wiki.fasterxml.com/JacksonHome)
