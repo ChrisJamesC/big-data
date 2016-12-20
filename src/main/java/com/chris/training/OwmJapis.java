@@ -11,15 +11,15 @@ import org.json.JSONException;
  */
 public class OwmJapis {
     private static String apiKey = "ece9cca20d3e975185a1883005177a0b";
-    public static float getTemperatureForCity(String cityName) throws IOException, JSONException {
+    public static CityReport getTemperatureForCity(String cityName) throws IOException, JSONException {
         OpenWeatherMap owm = new OpenWeatherMap(apiKey);
 
         // getting current weather data for the "London" city
         CurrentWeather cwd = owm.currentWeatherByCityName(cityName);
 
         // checking data retrieval was successful or not
-        if (cwd.isValid() && cwd.getMainInstance().hasTemperature()) {
-            return cwd.getMainInstance().getTemperature();
+        if (cwd.isValid() && cwd.getMainInstance().hasTemperature() && cwd.hasDateTime()) {
+            return new CityReport(cityName, cwd.getMainInstance().getTemperature(), cwd.getDateTime());
         } else {
             throw new IOException("No temperature for the city");
         }
