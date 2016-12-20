@@ -23,7 +23,6 @@ public class OwmJapis {
         } else {
             throw new IOException("No temperature for the city");
         }
-
     }
 
     public static void singleImport()
