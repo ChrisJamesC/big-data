@@ -10,11 +10,27 @@ import org.json.JSONException;
  * Created by christopherchiche on 20.12.16.
  */
 public class OwmJapis {
+    private static String apiKey = "ece9cca20d3e975185a1883005177a0b";
+    public static float getTemperatureForCity(String cityName) throws IOException, JSONException {
+        OpenWeatherMap owm = new OpenWeatherMap(apiKey);
+
+        // getting current weather data for the "London" city
+        CurrentWeather cwd = owm.currentWeatherByCityName(cityName);
+
+        // checking data retrieval was successful or not
+        if (cwd.isValid() && cwd.getMainInstance().hasTemperature()) {
+            return cwd.getMainInstance().getTemperature();
+        } else {
+            throw new IOException("No temperature for the city");
+        }
+
+    }
+
     public static void singleImport()
             throws IOException, MalformedURLException, JSONException {
 
         // declaring object of "OpenWeatherMap" class
-        OpenWeatherMap owm = new OpenWeatherMap("ece9cca20d3e975185a1883005177a0b");
+        OpenWeatherMap owm = new OpenWeatherMap(apiKey);
 
         // getting current weather data for the "London" city
         CurrentWeather cwd = owm.currentWeatherByCityName("London");
